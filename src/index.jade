@@ -1,0 +1,42 @@
+include ./mixins/js
+include ./mixins/css
+include ./mixins/import
+
+doctype html
+html
+  head
+    title Poly CORE
+    meta(name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+    script(src="components/platform/platform.js")
+    // poly core
+    +import("components/font-roboto/roboto.html")
+    +import("components/core-scaffold/core-scaffold.html")
+    +import("components/core-header-panel/core-header-panel.html")
+    +import("components/core-toolbar/core-toolbar.html")
+    +import("components/paper-tabs/paper-tabs.html")
+    +import("components/core-icon/core-icon.html")
+    +import("components/core-item/core-item.html")
+    +import("components/paper-button/paper-button.html")
+
+
+    +css("/css/main.css")
+
+  body(unresolved)
+    core-scaffold
+      core-header-panel(navigation flex mode="seamed")
+        core-toolbar NavMenu
+        core-menu(theme="core-dark-theme")
+          core-item(icon="settings" label="Settings")
+      div(tool) Polymer 
+      .content
+        br
+        br
+        br
+        paper-button(raisedButton) Core elements
+        iframe.viewframe(src="/poly-core.html")
+        paper-button(raisedButton) Polymer UI elements
+        iframe.viewframe(src="/poly-ui.html")
+
+
+        a(href="/poly-core.html")
+        a(href="/poly-ui.html")

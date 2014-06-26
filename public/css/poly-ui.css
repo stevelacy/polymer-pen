@@ -1,0 +1,28 @@
+.cards {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+polymer-ui-card {
+  position: relative;
+  display: block;
+  height: 200px;
+  width: 240px;
+  margin: 20px auto;
+  padding: 30px;
+}
+polymer-ui-card .menu {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+}
+polymer-ui-card img {
+  max-width: 90%;
+  max-height: 90%;
+}
+.fab-right-hover {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+}

@@ -1,0 +1,74 @@
+include ./mixins/js
+include ./mixins/css
+include ./mixins/import
+
+doctype html
+html
+  head
+    title Poly CORE
+    meta(name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+    script(src="components/platform/platform.js")
+    // poly core
+    +import("components/font-roboto/roboto.html")
+    +import("components/core-scaffold/core-scaffold.html")
+    +import("components/core-header-panel/core-header-panel.html")
+    +import("components/core-toolbar/core-toolbar.html")
+    +import("components/core-icon/core-icon.html")
+    +import("components/core-item/core-item.html")
+    +import("components/core-menu-button/core-menu-button.html")
+
+    // paper
+    +import("components/paper-tabs/paper-tabs.html")
+    +import("components/paper-toast/paper-toast.html")
+    +import("components/paper-button/paper-button.html")
+
+    +css("/css/main.css")
+
+    style.
+      core-toolbar {
+        background-color: #fafafa;
+        overflow: hidden;
+        color: #171717
+      }
+      .content{
+        padding: 10px;
+      }
+      .nav-drawer{
+        background: #cdcdcd;
+      }
+      paper-button{
+        margin: 5px;
+      }
+
+  body(unresolved)
+    core-drawer-panel#drawerPanel(theme="core-light-theme")
+      core-header-panel.nav-drawer(drawer)
+        core-toolbar#navDrawer
+          span Nav Drawer
+        core-menu
+          core-item One
+      core-header-panel(main)
+        core-toolbar
+          core-icon-button#menuButton(icon="menu")
+          div(core-flex) Core and Paper elements
+          core-menu-button(icon="more-vert" halign="right")
+            core-item(icon="settings" label="Settings")
+        .content 
+          h3 core elements
+          paper-button(raisedButton) Button
+          paper-button(raisedButton onclick="showToast('#toast1')") Show Toast
+
+          paper-toast#toast1(text="Toast showing")
+
+
+  script.
+    document.addEventListener('polymer-ready', function() {
+      var menuButton = document.getElementById('menuButton');
+      var drawerPanel = document.getElementById('drawerPanel');
+      menuButton.addEventListener('click', function() {
+        drawerPanel.togglePanel();
+      });
+    });
+    showToast = function(selector){
+      document.querySelector(selector).show();
+    }

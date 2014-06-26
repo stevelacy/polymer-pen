@@ -1,0 +1,75 @@
+include ./mixins/js
+include ./mixins/css
+include ./mixins/import
+
+doctype html
+html
+head
+    title Poly CORE
+    meta(name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+    script(src="components/platform/platform.js")
+    // poly core
+    +import("components/font-roboto/roboto.html")
+    +import("components/core-scaffold/core-scaffold.html")
+    +import("components/core-header-panel/core-header-panel.html")
+    +import("components/core-toolbar/core-toolbar.html")
+    +import("components/paper-tabs/paper-tabs.html")
+    +import("components/core-icon/core-icon.html")
+    +import("components/core-item/core-item.html")
+    +import("components/paper-fab/paper-fab.html")
+    +import("components/core-drawer-panel/core-drawer-panel.html")
+    // poly ui
+    +import("components/polymer-ui-toolbar/polymer-ui-toolbar.html")
+    +import("components/polymer-ui-menu-button/polymer-ui-menu-button.html")
+    +import("components/polymer-ui-menu-item/polymer-ui-menu-item.html")
+    +import("components/polymer-flex-layout/polymer-flex-layout.html")
+    +import("components/polymer-ui-card/polymer-ui-card.html")
+    
+
+    +css("/css/main.css")
+    +css("/css/poly-ui.css")
+
+  body(unresolved flex)
+
+    polymer-ui-toolbar(theme="polymer-ui-dark-theme")
+      polymer-ui-menu-button(icon="menu")
+        polymer-ui-menu-item(icon="close" label="does nothing right now")
+      div(flex) ActionBar Title
+      polymer-ui-menu-button(selected="0" halign="right")
+        polymer-ui-menu-item(icon="settings" label="settings")
+        polymer-ui-menu-item(icon="error") Broken ^_^
+      
+    .cards
+      polymer-ui-card(swipeable theme="polymer-ui-light-theme")
+        .menu
+          polymer-ui-menu-button(valign="bottom" halign="right")
+            polymer-ui-menu-item(label="edit")
+        h2 Card
+        h4 Swipe me to remove
+
+      polymer-ui-card(theme="polymer-ui-light-theme")
+        .menu
+          polymer-ui-menu-button(valign="bottom" halign="right")
+            polymer-ui-menu-item(label="edit")
+            polymer-ui-menu-item(label="delete")
+        h2 Second Card
+        h4 You can not swipe me
+
+      polymer-ui-card(theme="polymer-ui-light-theme")
+        .menu
+          polymer-ui-menu-button(valign="bottom" halign="right")
+            polymer-ui-menu-item(label="edit")
+            polymer-ui-menu-item(label="delete")
+        h2 Third Card
+        img(src="http://www.polymer-project.org/images/logos/p-logo.svg")
+
+    paper-fab.fab-right-hover(icon="check")
+
+    script.
+      // poly cards
+      document.addEventListener('polymer-ready', function() {
+        document.querySelector('.cards').addEventListener(
+          'polymer-card-swipe-away', function(e) {
+            e.target.parentNode.removeChild(e.target);
+          });
+      });
