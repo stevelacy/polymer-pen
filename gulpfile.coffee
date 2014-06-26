@@ -9,10 +9,13 @@ express = require "express"
 
 app = express()
 app.use express.static path.resolve __dirname, "./public"
+port = 5000
+
 
 gulp.task "server", ->
   server = http.Server app
-  server.listen 5000
+  server.listen port
+  console.log "Server starting on port #{port}"
 
 gulp.task "jade", ->
   gulp.src "./src/**/*.jade"
